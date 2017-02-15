@@ -22,8 +22,8 @@
     [super viewDidLoad];
     
     [self configNavigationBar];
-    [self addTableView];
     [self addBgView];
+    [self addTableView];
     
 }
 
@@ -44,9 +44,9 @@
     _bgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 200)];
     _bgView.image = [UIImage imageNamed:@"bg.jpg"];
     [self.view addSubview:_bgView];
-    _headerView = [[TableHeaderView alloc] initWithFrame:CGRectMake(0, 64, self.view.frame.size.width, 200-64                       )];
-    _headerView.backgroundColor = [UIColor clearColor];
-    [self.view addSubview:_headerView];
+//    _headerView = [[TableHeaderView alloc] initWithFrame:CGRectMake(0, 64, self.view.frame.size.width, 200-64                       )];
+//    _headerView.backgroundColor = [UIColor clearColor];
+//    [self.view addSubview:_headerView];
     
 }
 
@@ -54,7 +54,7 @@
 {
     CGFloat width = self.view.frame.size.width;
     CGFloat height = [UIScreen mainScreen].bounds.size.height;
-    _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, width, height) style:UITableViewStylePlain];
+    _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 64, width, height) style:UITableViewStylePlain];
     _tableView.delegate = self;
     _tableView.dataSource = self;
     _tableView.backgroundColor = [UIColor clearColor];
@@ -97,43 +97,36 @@
     return 30;
 }
 
+static const float bgOffset = 32;
+
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
-     CGFloat minAlphaOffset = 64;
     CGFloat offsetY = scrollView.contentOffset.y;
+    CGFloat headerH = _tableView.tableHeaderView.frame.size.height;
     if (_lastOffsetY < offsetY) {
-        if (fabs(offsetY) < minAlphaOffset) {
-            CGFloat alpha = _headerView.alpha - (offsetY - _lastOffsetY) / minAlphaOffset;
-            _headerView.alpha = alpha;
-            CGRect rect = _headerView.frame;
-            CGRect newRect = rect;
-            newRect.origin.y = rect.origin.y - (offsetY - _lastOffsetY);
-            _headerView.frame = newRect;
-            CGRect r = _bgView.frame;
-            CGRect nr = r;
-            nr.size.height = r.size.height - (offsetY - _lastOffsetY);
-            _bgView.frame = nr;
-            
+        CGFloat bgY = _bgView.frame.origin.y;
+        if (bgY >= -bgOffset  && offsetY > 0) {
+            CGFloat a = bgOffset / headerH;
+            CGRect rect = _bgView.frame;
+            CGRect newR = rect;
+            CGFloat distance = (offsetY * a) > bgOffset ? bgOffset : (offsetY * a) ;
+            newR.origin.y = -distance;
+            //NSLog(@"Y：%f,   %f", newR.origin.y, y);
+            _bgView.frame = newR;
         }
-        NSLog(@"上：%f, last:%f", offsetY, _lastOffsetY);
+        //NSLog(@"上：%f, last:%f", offsetY, _lastOffsetY);
     }else {
-        
-        if (_lastOffsetY >= -minAlphaOffset && _lastOffsetY < 0) {
-            
-            CGFloat alpha =  fabs(offsetY) / minAlphaOffset;
-            _headerView.alpha = alpha;
-            CGRect rect = _headerView.frame;
-            CGRect newRect = rect;
-            newRect.origin.y = fabs(offsetY);
-            _headerView.frame = newRect;
+        CGFloat bgY = _bgView.frame.origin.y;
+        if (bgY < 0 && offsetY <= headerH) {
+            CGFloat a = bgOffset / headerH;
+            CGRect rect = _bgView.frame;
+            CGRect newR = rect;
+            CGFloat distance = -bgOffset + ((headerH-offsetY) * a);
+            newR.origin.y = distance > 0 ? 0 :distance ;
+            _bgView.frame = newR;
         }
         
-//        CGRect r = _bgView.frame;
-//        CGRect nr = r;
-//        nr.size.height = r.size.height + fabs((offsetY - _lastOffsetY));
-//        _bgView.frame = nr;
-        
-        NSLog(@"下：%f, last:%f", offsetY, _lastOffsetY);
+        //NSLog(@"下：%f, last:%f", offsetY, _lastOffsetY);
     }
     
     _lastOffsetY = scrollView.contentOffset.y;

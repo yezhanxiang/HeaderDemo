@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		630371471E545F0300718433 /* SecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 630371461E545F0300718433 /* SecondViewController.m */; };
 		637F5BED1E4D9D3600E0DA0A /* bg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 637F5BEC1E4D9D3600E0DA0A /* bg.jpg */; };
 		637F5BF01E4DA3E300E0DA0A /* TableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 637F5BEF1E4DA3E300E0DA0A /* TableHeaderView.m */; };
 		63F58C251E4D90FC0035D003 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 63F58C241E4D90FC0035D003 /* main.m */; };
@@ -37,6 +38,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		630371451E545F0300718433 /* SecondViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SecondViewController.h; sourceTree = "<group>"; };
+		630371461E545F0300718433 /* SecondViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SecondViewController.m; sourceTree = "<group>"; };
 		637F5BEC1E4D9D3600E0DA0A /* bg.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = bg.jpg; sourceTree = "<group>"; };
 		637F5BEE1E4DA3E300E0DA0A /* TableHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableHeaderView.h; sourceTree = "<group>"; };
 		637F5BEF1E4DA3E300E0DA0A /* TableHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableHeaderView.m; sourceTree = "<group>"; };
@@ -118,6 +121,8 @@
 				63F58C231E4D90FC0035D003 /* Supporting Files */,
 				637F5BEE1E4DA3E300E0DA0A /* TableHeaderView.h */,
 				637F5BEF1E4DA3E300E0DA0A /* TableHeaderView.m */,
+				630371451E545F0300718433 /* SecondViewController.h */,
+				630371461E545F0300718433 /* SecondViewController.m */,
 			);
 			path = HeaderDemo;
 			sourceTree = "<group>";
@@ -283,6 +288,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				630371471E545F0300718433 /* SecondViewController.m in Sources */,
 				637F5BF01E4DA3E300E0DA0A /* TableHeaderView.m in Sources */,
 				63F58C2B1E4D90FC0035D003 /* ViewController.m in Sources */,
 				63F58C281E4D90FC0035D003 /* AppDelegate.m in Sources */,
@@ -435,6 +441,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = JD8X33J4KG;
 				INFOPLIST_FILE = HeaderDemo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = test.HeaderDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -447,6 +454,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = JD8X33J4KG;
 				INFOPLIST_FILE = HeaderDemo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = test.HeaderDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
